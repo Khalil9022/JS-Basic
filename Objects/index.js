@@ -46,3 +46,5 @@ function Circle(radius){
 
 // const circle3 = new Circle(1)
 // console.log(circle3);
+
+Circle.call({},1)
