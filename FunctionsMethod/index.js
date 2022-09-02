@@ -107,4 +107,93 @@ function localGlobalScope(){
     stop()
 }
 
-localGlobalScope()
+// localGlobalScope()
+
+//--------------Let vs Var ---------------------
+function letVar(){
+    function start(){
+        //var => function-scoped 
+        //let, const => block-scoped
+
+        for(var i =0; i<5; i++){
+            if (true){
+                var color = 'red'
+            }
+        }
+        //using Var will accesible for i in line 119
+        console.log(color);
+    }
+
+    start()
+}
+// letVar()
+
+
+//----------------This Keyword------------------
+//method -> obj
+// function -> global (window, global)
+
+function thisKeyword(){
+    const video = {
+        title : 'a',
+        tags : ['a','b','c'],
+        showTags(){
+            this.tags.forEach(function(tag){
+                console.log(this.title,tag);
+            },this)
+        }
+    }
+    
+    video.showTags()
+
+    function playVideo(title){
+        this.title = title 
+        console.log(this);
+    }
+
+    // const v = new playVideo('b') // {}
+}
+// thisKeyword()
+
+//-------------Changing This--------------------
+function changeThis(){
+    //Solution 1 
+    const video = {
+        title: 'a',
+        tags: ['a', 'b', 'c'],
+        showTags() {
+            const self = this
+            this.tags.forEach(function (tag) {
+                console.log(self.title, tag);
+            })
+        }
+    }
+
+    // video.showTags()
+
+    //Solution 2
+    const video2 = {
+        title: 'a',
+        tags: ['a', 'b', 'c'],
+        showTags() {
+            this.tags.forEach(tag =>{
+                console.log(this.title, tag);
+            })
+        }
+    }
+
+    video2.showTags()
+
+
+    function playVideo(a,b){
+        console.log(this);
+    }
+
+    playVideo.call({ name : 'Khalil'},1,2) // like usual
+    playVideo.apply({ name : 'Khalil'}, [1,2]) //using array
+    playVideo.bind({ name : 'Khalil'})
+    
+    // playVideo()
+}
+
+changeThis()
