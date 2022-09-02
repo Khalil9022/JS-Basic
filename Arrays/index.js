@@ -125,6 +125,7 @@ function sortingArray(){
 
     console.log(courses1);
 }
+sortingArray()
 
 
 //-----------------------Testing Element of an Array--------------------
@@ -190,5 +191,5 @@ function reduceArray(){
 
     console.log(sum)
 }
-reduceArray()
+// reduceArray()
 
